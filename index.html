@@ -15,7 +15,7 @@
 
         <input type="text" id="vnInputId" name="vnInput" onkeydown="gameObj.checkAnswer(this.value)"> 
 
-        <input type="button" value="Skip" onclick="alert('trying to skip!')"> <br>
+        <input type="button" value="Skip" onclick="gameObj.loadNextWord()"> <br>
         <label for="vnInputId">Enter Answer:</label>
         <br><br>
         <input type="button" value="Start Game" onclick="gameObj.loadNextWord()"> <br>

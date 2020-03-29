@@ -80,9 +80,6 @@ class TypingGameLogic {
       document.getElementById("questionId").innerHTML = this.wordList[0].vnWord + " | " + this.wordList[0].engWord;
       this.currentQuestion = this.wordList[0];
     }
-    firstmethod(arg1, arg2) {
-
-    }
     /**
      * Load a list of English/Vietnamese word pairs from file/API.
      * --Temorarily hard-coded
