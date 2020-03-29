@@ -86,18 +86,18 @@ class TypingGameLogic {
      */
     loadWordList() {
       let wordList = [];
-      wordList.push(new WordPair("Màu xanh lá cây", "green"));
-      wordList.push(new WordPair("Màu xám", "grey"));
-      wordList.push(new WordPair("Màu bạc", "silver"));
-      wordList.push(new WordPair("Màu trắng", "white"));
-      wordList.push(new WordPair("Màu vàng", "yellow"));
-      wordList.push(new WordPair("Màu cam", "orange"));
-      wordList.push(new WordPair("Màu đen", "black"));
-      wordList.push(new WordPair("Màu tím", "purple"));
-      wordList.push(new WordPair("Màu đỏ", "red"));
-      wordList.push(new WordPair("Màu xanh da trời", "blue"));
-      wordList.push(new WordPair("Màu nâu", "brown"));
-      wordList.push(new WordPair("Màu hồng", "pink"));
+      wordList.push(new WordPair("màu xanh lá cây", "green"));
+      wordList.push(new WordPair("màu xám", "grey"));
+      wordList.push(new WordPair("màu bạc", "silver"));
+      wordList.push(new WordPair("màu trắng", "white"));
+      wordList.push(new WordPair("màu vàng", "yellow"));
+      wordList.push(new WordPair("màu cam", "orange"));
+      wordList.push(new WordPair("màu đen", "black"));
+      wordList.push(new WordPair("màu tím", "purple"));
+      wordList.push(new WordPair("màu đỏ", "red"));
+      wordList.push(new WordPair("màu xanh da trời", "blue"));
+      wordList.push(new WordPair("màu nâu", "brown"));
+      wordList.push(new WordPair("màu hồng", "pink"));
 
       return wordList;
     }
