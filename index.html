@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Vietnamese Typing</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="TypingGameLogic.js"></script>
+  </head>
+  <body>
+        <h1>Vietnamese Typing</h1>
+        <p>Type the vietnemase words correctly below: This is about accuracy.</p>
+
+        <div id="questionId">Question</div>
+        <div id="typedAnswerID">Input</div>
+
+        <input type="text" id="vnInputId" name="vnInput" onkeyup="gameObj.checkAnswer(this.value)"> 
+
+        <input type="button" value="Skip" onclick="alert('trying to skip!')"> <br>
+        <label for="vnInputId">Enter Answer:</label>
+        <br><br>
+        <input type="button" value="Start Game" onclick="gameObj.loadNextWord()"> <br>
+
+        <h3>Answers:</h3>
+        <ul id="answerListId">
+        </ul>
+  </body>
+</html>
