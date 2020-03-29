@@ -110,7 +110,7 @@ class TypingGameLogic {
      */
     checkAnswer(answer) {
       console.log(answer + ' ' + this.currentQuestion);
-      if ( answer === this.currentQuestion.vnWord) {
+      if ( answer.trim() === this.currentQuestion.vnWord) {
         this.addAnswerToList(answer);
         document.getElementById("vnInputId").value="";
         this.loadNextWord();
