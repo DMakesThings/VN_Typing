@@ -72,7 +72,7 @@ class TypingGameLogic {
     constructor() {
       //For now: Hard-code a list of words. 
       //We'll change it later to 
-      this.wordList = this.loadWordList();
+      this.wordList = []; // this.loadWordList();
       this.currentQuestion = null;
     }
     loadNextWord() {
@@ -85,21 +85,21 @@ class TypingGameLogic {
      * --Temorarily hard-coded
      */
     loadWordList() {
-      let wordList = [];
-      wordList.push(new WordPair("màu xanh lá cây", "green"));
-      wordList.push(new WordPair("màu xám", "grey"));
-      wordList.push(new WordPair("màu bạc", "silver"));
-      wordList.push(new WordPair("màu trắng", "white"));
-      wordList.push(new WordPair("màu vàng", "yellow"));
-      wordList.push(new WordPair("màu cam", "orange"));
-      wordList.push(new WordPair("màu đen", "black"));
-      wordList.push(new WordPair("màu tím", "purple"));
-      wordList.push(new WordPair("màu đỏ", "red"));
-      wordList.push(new WordPair("màu xanh da trời", "blue"));
-      wordList.push(new WordPair("màu nâu", "brown"));
-      wordList.push(new WordPair("màu hồng", "pink"));
+      // let wordList = [];
+      // wordList.push(new WordPair("màu xanh lá cây", "green"));
+      // wordList.push(new WordPair("màu xám", "grey"));
+      // wordList.push(new WordPair("màu bạc", "silver"));
+      // wordList.push(new WordPair("màu trắng", "white"));
+      // wordList.push(new WordPair("màu vàng", "yellow"));
+      // wordList.push(new WordPair("màu cam", "orange"));
+      // wordList.push(new WordPair("màu đen", "black"));
+      // wordList.push(new WordPair("màu tím", "purple"));
+      // wordList.push(new WordPair("màu đỏ", "red"));
+      // wordList.push(new WordPair("màu xanh da trời", "blue"));
+      // wordList.push(new WordPair("màu nâu", "brown"));
+      // wordList.push(new WordPair("màu hồng", "pink"));
 
-      return wordList;
+      // return wordList;
     }
     /**
      * Check answer of input box against question.
@@ -107,22 +107,54 @@ class TypingGameLogic {
      */
     checkAnswer(answer) {
       console.log(answer + ' ' + this.currentQuestion);
+      answer = answer.toLowerCase();
+      document.getElementById("vnInputId").value = answer;
       if ( answer.trim() === this.currentQuestion.vnWord) {
         this.addAnswerToList(this.currentQuestion.vnWord + " | " + this.currentQuestion.engWord);
         document.getElementById("vnInputId").value="";
         this.loadNextWord();
         document.getElementById("vnInputId").focus();
-        return true;
       }
-      return false;
     }
-
+    /**
+     * 
+     * @param {*} answer 
+     */
     addAnswerToList(answer) {
       let node = document.createElement("li");
       let textnode = document.createTextNode(answer);
       node.appendChild(textnode); 
       document.getElementById("answerListId").appendChild(node);
     }
+    /**
+     * 
+     * @param {*} file 
+     */
+    readTextFile(file){
+      let rawFile = new XMLHttpRequest();
+      rawFile.open("GET", file, true);
+      rawFile.onreadystatechange = function ()
+      {
+          if(rawFile.readyState === 4)
+          {
+              if(rawFile.status === 200 || rawFile.status == 0)
+              {
+                  let allText = rawFile.responseText;
+                  let lines = allText.split("\n");
+                  console.log(lines);
+                  for ( let line of lines) {
+                    console.log(line);
+                    let words = line.split(",");
+
+                    //have to use 'gameObj'.. as scope is not in 'this' anymore.
+                    gameObj.wordList.push(new WordPair(words[0].trim(), words[1].trim()));
+                  }
+                  //alert(allText);
+              }
+          }
+      }
+      rawFile.send(null);
+  }
 }
 
 //Start Game!
