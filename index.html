@@ -19,7 +19,13 @@
         <label for="vnInputId">Enter Answer:</label>
         <br><br>
         <input type="button" value="Start Game" onclick="gameObj.loadNextWord()">
-        <input type="button" value="Test Load File" onclick="gameObj.readTextFile('data/colors.csv')"> <br>
+        <label>Select word list</label>
+             <select id = "wordListId">
+               <option value = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRFfw8Wc12Rn_OeQll12WTjnyMGWPegypnmHD5ng5sb3srI5ucOKjMutPh7FJijE1E7lsR8EHsOMZDl/pub?gid=288009028&single=true&output=csv">Colours</option>
+               <option value = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRFfw8Wc12Rn_OeQll12WTjnyMGWPegypnmHD5ng5sb3srI5ucOKjMutPh7FJijE1E7lsR8EHsOMZDl/pub?gid=521843372&single=true&output=csv">Numbers</option>
+               <option value = "nothing" selected>Nothing selected</option>
+             </select>
+        <input type="button" value="Test Load File" onclick="gameObj.readTextFile('blah')"> <br> <!-- data/colors.csv -->
 
         <h3>Answers:</h3>
         <ul id="answerListId">

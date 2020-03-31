@@ -131,6 +131,12 @@ class TypingGameLogic {
      * @param {*} file 
      */
     readTextFile(file){
+      //file = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRFfw8Wc12Rn_OeQll12WTjnyMGWPegypnmHD5ng5sb3srI5ucOKjMutPh7FJijE1E7lsR8EHsOMZDl/pub?gid=288009028&single=true&output=csv";
+      //file = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRFfw8Wc12Rn_OeQll12WTjnyMGWPegypnmHD5ng5sb3srI5ucOKjMutPh7FJijE1E7lsR8EHsOMZDl/pub?gid=521843372&single=true&output=csv";
+      
+      file = document.getElementById("wordListId").value;
+
+
       let rawFile = new XMLHttpRequest();
       rawFile.open("GET", file, true);
       rawFile.onreadystatechange = function ()
@@ -139,6 +145,8 @@ class TypingGameLogic {
           {
               if(rawFile.status === 200 || rawFile.status == 0)
               {
+                  gameObj.wordList = []; //empty word list.. Do we want to make it empty? :) 
+
                   let allText = rawFile.responseText;
                   let lines = allText.split("\n");
                   console.log(lines);
@@ -147,7 +155,7 @@ class TypingGameLogic {
                     let words = line.split(",");
 
                     //have to use 'gameObj'.. as scope is not in 'this' anymore.
-                    gameObj.wordList.push(new WordPair(words[0].trim(), words[1].trim()));
+                    gameObj.wordList.push(new WordPair(words[0].trim().toLowerCase(), words[1].trim()));
                   }
                   //alert(allText);
               }
