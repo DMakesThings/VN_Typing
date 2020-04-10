@@ -139,8 +139,7 @@ class TypingGameLogic {
 
       let rawFile = new XMLHttpRequest();
       rawFile.open("GET", file, true);
-      rawFile.onreadystatechange = function ()
-      {
+      rawFile.onreadystatechange = function () {
           if(rawFile.readyState === 4)
           {
               if(rawFile.status === 200 || rawFile.status == 0)
@@ -162,12 +161,56 @@ class TypingGameLogic {
           }
       }
       rawFile.send(null);
-  }
+    }
+
+
+    loadWordList(){
+      let wordListLink = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRFfw8Wc12Rn_OeQll12WTjnyMGWPegypnmHD5ng5sb3srI5ucOKjMutPh7FJijE1E7lsR8EHsOMZDl/pub?gid=43556301&single=true&output=csv";
+      let rawFile = new XMLHttpRequest();
+      rawFile.open("GET", wordListLink, true);
+      rawFile.onreadystatechange = function () {
+        if(rawFile.readyState === 4)
+          {
+              if(rawFile.status === 200 || rawFile.status == 0)
+              {
+                  gameObj.wordList = [];
+
+                  let allText = rawFile.responseText;
+                  let lines = allText.split("\n");
+                  console.log(lines);
+                  for ( let line of lines) {
+                    console.log(line);
+                    let words = line.split(",");
+
+                    //have to use 'gameObj'.. as scope is not in 'this' anymore.
+                    // gameObj.wordList.push(new WordPair(words[0].trim().toLowerCase(), words[1].trim()));
+                    //Add the key/pair values to the drop down box
+                    var sel = document.getElementById("wordListId");
+                    // create new option element
+                    var opt = document.createElement('option');
+
+                    // create text node to add to option element (opt)
+                    opt.appendChild( document.createTextNode(words[0].trim()) );
+
+                    // set value property of opt
+                    opt.value = words[1].trim(); 
+
+                    // add opt to end of select box (sel)
+                    sel.appendChild(opt); 
+
+                  }
+                  //alert(allText);
+              }
+          }
+      }
+      rawFile.send();
+
+    }
 }
 
 //Start Game!
 let gameObj = new TypingGameLogic();
-
+gameObj.loadWordList();
 
 
 /**
