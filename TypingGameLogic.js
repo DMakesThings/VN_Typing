@@ -165,7 +165,7 @@ class TypingGameLogic {
 
 
     loadWordList(){
-      let wordListLink = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRFfw8Wc12Rn_OeQll12WTjnyMGWPegypnmHD5ng5sb3srI5ucOKjMutPh7FJijE1E7lsR8EHsOMZDl/pub?gid=43556301&single=true&output=csv";
+      let wordListLink = "https://spreadsheets.google.com/spreadsheets/d/e/2PACX-1vRFfw8Wc12Rn_OeQll12WTjnyMGWPegypnmHD5ng5sb3srI5ucOKjMutPh7FJijE1E7lsR8EHsOMZDl/pub?gid=43556301&single=true&output=csv";
       let rawFile = new XMLHttpRequest();
       rawFile.open("GET", wordListLink, true);
       rawFile.onreadystatechange = function () {
