@@ -14,6 +14,8 @@
   * Note: That these will be in the global space: Best to keep them encapsulated within classes.
 */
 
+//corsProxy: Temporary proxy to get around Google sheets CORS requirement for published sheets.
+let corsProxy = "https://cors-anywhere.herokuapp.com/";
 
 ////////////////////////////////////////////////
 //Utility/Misc Objects
@@ -165,7 +167,10 @@ class TypingGameLogic {
 
 
     loadWordList(){
-      let wordListLink = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRFfw8Wc12Rn_OeQll12WTjnyMGWPegypnmHD5ng5sb3srI5ucOKjMutPh7FJijE1E7lsR8EHsOMZDl/pub?gid=43556301&single=true&output=csv";
+      // let wordListLink = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRFfw8Wc12Rn_OeQll12WTjnyMGWPegypnmHD5ng5sb3srI5ucOKjMutPh7FJijE1E7lsR8EHsOMZDl/pub?gid=43556301&single=true&output=csv";
+      let wordListLink = "spreadsheets.google.com/spreadsheets/d/e/2PACX-1vRFfw8Wc12Rn_OeQll12WTjnyMGWPegypnmHD5ng5sb3srI5ucOKjMutPh7FJijE1E7lsR8EHsOMZDl/pub?gid=43556301&single=true&output=csv";
+      wordListLink = corsProxy + wordListLink;
+
       let rawFile = new XMLHttpRequest();
       rawFile.open("GET", wordListLink, true);
       rawFile.onreadystatechange = function () {
@@ -193,7 +198,7 @@ class TypingGameLogic {
                     opt.appendChild( document.createTextNode(words[0].trim()) );
 
                     // set value property of opt
-                    opt.value = words[1].trim(); 
+                    opt.value = corsProxy + words[1].trim(); 
 
                     // add opt to end of select box (sel)
                     sel.appendChild(opt); 
